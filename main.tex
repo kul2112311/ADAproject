@@ -1,0 +1,33 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{hyperref}
+
+\usepackage{titlesec}
+\titleformat*{\section}{\normalsize\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+
+\title{\textbf{ADA Project Report} \\ \large Polynomial Time Algorithms For Tracking Path Problems}
+\author{By Pratibha Choudhary}
+\author{Kulsoom Asim \\ Sara Baloch Team 14}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+\noindent \textit{Published in:} 2020 Springer Nature Switzerland AG \newline
+\textit{DOI:} \href{https://doi.org/10.1007/978-3-030-48966-3_13}{10.1007/978-3-030-48966-3\_13} \\
+\textit{GitHub Repository:} \href{https://github.com/kul2112311/ADAproject.git}{https://github.com/kul2112311/ADAproject.git}
+
+\section*{Summary}
+The paper \textit{“Tracking Paths in Polynomial Time”} was selected as it addresses the tracking paths problem, which identifies a minimal set of vertices to uniquely distinguish all simple paths between a source and destination in a graph. The problem is inherently NP-hard, but efficient solutions exist for certain classes such as \textbf{chordal graphs} and \textbf{tournament graphs}. The authors propose methods to extend these solutions to broader graph classes. The results demonstrate that structured graphs allow for feasible algorithmic solutions.
+
+\section*{Paper Justification}
+This problem has key applications in network security, routing, path verification, supply chain logistics, and cybersecurity. The paper extends our understanding of NP-hard problems by proving that, under specific constraints, the Tracking Paths Problem can be solved efficiently. The findings bridge theory and practical algorithmic solutions for real-world systems.
+
+\section*{Rough Work Division}
+Both team members will contribute equally to understanding the theoretical concepts and pseudocodes in the paper. After analyzing the problem and proposed solutions, each member will implement one of the two key algorithms independently, handling testing and debugging. Once completed, both implementations will be compared in terms of performance and feasibility. The best-performing approach will then be refined and optimized collaboratively to ensure correctness and efficiency.
+
+\section*{Implementation Feasibility}
+The implementation is achievable due to the clear pseudocode provided for chordal and tournament graphs, enabling a systematic approach. Python, along with graph-processing libraries like \texttt{NetworkX}, will be used for development and testing. To evaluate performance and validate results, we will use both public graph datasets and custom-constructed graphs.
+\end{document}
