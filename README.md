@@ -65,3 +65,11 @@ Implementing the proposed algorithms presents several challenges:
 - **Edge-Based Tracking**: Efficient computation of the minimum feedback edge set in large graphs adds complexity.
 - **Handling Bounded-Degree Graphs**: For graphs with degree δ ≥ 6, the NP-hard nature of the problem requires approximation techniques to manage larger instances.
 
+## References Further 
+
+[1] A. Banik, P. Choudhary, V. Raman, and S. Saurabh, Fixed-parameter tractable algorithms for tracking
+shortest paths, arXiv preprint arXiv:2001.08977, 2020. Available at: http://arxiv.org/abs/2001.
+08977
+[2] D. Eppstein, M. T. Goodrich, J. A. Liu, and P. Matias, Tracking paths in planar graphs. In: Proceedings of the 30th International Symposium on Algorithms and Computation (ISAAC 2019), Shanghai
+University of Finance and Economics, Shanghai, China, December 8–11, 2019, pp. 54:1–54:17.
+
