@@ -19,3 +19,49 @@ NetworkX (for graph operations)
 
 Matplotlib (for visualization)
 
+# Tracking Paths in Polynomial Time - Project Documentation
+
+## Problem Overview
+
+The paper addresses the NP-hard problem of finding a minimal set of vertices to uniquely distinguish all simple paths between a source and destination in a graph. The problem is inherently difficult due to the complexity of graph structures. However, the paper's main contribution is the introduction of polynomial-time algorithms for certain graph types, namely chordal and tournament graphs, which are previously unexplored for path tracking problems.
+
+The proposed algorithms are not only computationally efficient for these specific graph types but also offer practical applications in real-world systems such as network security (intrusion detection) and transportation logistics (route verification). The methods presented in the paper show how structural properties of graphs can enable efficient solutions to problems that are typically NP-hard.
+
+## Key Contributions
+
+- **Polynomial-Time Algorithms**: The paper introduces exact algorithms for chordal graphs and tournament graphs, solving the tracking problem more efficiently.
+- **Edge-Based Tracking**: Unlike earlier approaches that were vertex-based, this paper shifts to edge-based tracking, which proves to be more efficient and allows for broader applications.
+- **Approximation for Bounded-Degree Graphs**: The paper provides a 2(δ + 1)-approximation for graphs with degree δ ≥ 6, improving upon previous approximation results in the field.
+
+## Algorithm Overview
+
+### 1. **Chordal Graphs**
+   - The algorithm leverages the chordal property (no induced cycles ≥ 4) by focusing on common neighbors in cycles. It identifies critical vertices that help distinguish all s-t paths.
+   - The time complexity is O(m · n³), where m is the number of edges and n is the number of vertices.
+
+### 2. **Tournament Graphs**
+   - This algorithm focuses on identifying vertices in the out-neighborhood of a source vertex and the in-neighborhood of a destination vertex, ensuring that paths remain unique.
+   - The time complexity is also O(m · n³), with preprocessing of O(n²).
+
+## Complexity and Efficiency
+
+- **Preprocessing**: Removing irrelevant vertices and edges runs in O(n²).
+- **Main Algorithm**: The algorithm evaluates candidates for each edge, with a final complexity of O(m · n³).
+- The paper demonstrates that these complexities are manageable for the specific graph classes, making the algorithms practical for use in real systems.
+
+## Comparison with Previous Algorithms
+
+Earlier work focused on planar graphs, with approximation algorithms for either shortest s-t paths or all s-t paths. While these approaches were limited to vertex-based solutions, this paper moves beyond these limitations by providing exact algorithms for broader graph classes like chordal and tournament graphs. Moreover, it shifts from vertex-based tracking to edge-based tracking, significantly improving efficiency and applicability.
+
+## Hardness and Proofs
+
+- **Vertex Cover Reduction**: The paper shows that the tracking problem is NP-hard by reducing it to the Vertex Cover problem, especially for graphs with degree δ ≥ 6.
+- **Degree Constraint Analysis**: It proves that tracking remains NP-hard even when the maximum degree δ ≤ 6, though simpler cases might be tractable for δ ≤ 5.
+
+## Implementation Challenges
+
+Implementing the proposed algorithms presents several challenges:
+- **Complex Graph Structures**: Managing large and complex chordal and tournament graphs can be computationally demanding.
+- **Edge-Based Tracking**: Efficient computation of the minimum feedback edge set in large graphs adds complexity.
+- **Handling Bounded-Degree Graphs**: For graphs with degree δ ≥ 6, the NP-hard nature of the problem requires approximation techniques to manage larger instances.
+
