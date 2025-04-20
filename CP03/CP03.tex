@@ -1,0 +1,126 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float} % For [H] positioning
+
+\title{ADA Checkpoint 3}
+\author{by Kulsoom Asim and Sara Baloch}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Summary:}
+The paper tackles the NP-hard problem of finding a minimal set of vertices to uniquely distinguish all simple paths between a source and destination in a graph. Its key contribution is polynomial-time algorithms for chordal graphs and tournaments (predictable flow connections), overcoming complex computational problems through structural graph analysis. The work demonstrates how domain-specific constraints enable efficient solutions to generally hard problems, with direct applications in network security (intrusion detection) and transportation logistics (route verification). While implementations face $O(mn^3)$ complexity for dense graphs, the theoretical framework provides a foundation for practical approximations in real-world systems.
+
+\section*{Our Implementation:}
+We implemented three key components from the paper:
+
+\begin{itemize}
+    \item \textbf{Reduction Rule 1}: Removed edges not involved in any $s$-$t$ paths to simplify the graph
+    
+    \item \textbf{Algorithm 1 (Chordal Graphs)}: Constructed a minimal tracking set by:
+    \begin{itemize}
+        \item Identifying critical vertices in distinguishing cycles after reduction
+    \end{itemize}
+    
+    \item \textbf{Algorithm 2 (Tournaments)}: Detected tracking vertices by:
+    \begin{itemize}
+        \item Computing $\text{Out}(u) \cap \text{In}(v)$ for each edge $(u \rightarrow v)$
+        \item Marking $x \in \text{Out}(u) \cap \text{In}(v)$ as trackers when they enable alternate $s$-$t$ paths
+    \end{itemize}
+\end{itemize}
+
+\section*{Implementation left out:}
+\begin{itemize}
+    \item Bounded-degree approximation: Excluded due to FVS construction complexity and insufficient pseudocode details
+    \item Complex graph testing: Limited by time constraints for generating dense chordal/tournament test cases
+\end{itemize}
+
+\section*{Comparative Evaluation}
+Prior approaches by Banik et al. and Eppstein et al. developed 2-approximation and 4-approximation algorithms respectively, but were restricted to planar graphs and shortest path variants. This work advances the field by introducing exact polynomial-time solutions for chordal and tournament graphs, reducing it to O($n^3$) and O($n^2$). For bounded-degree graphs with $\delta \geq 6$, the presented $2(\delta+1)$-approximation constitutes a significant improvement over the existing $\widetilde{O}(\sqrt{n})$ solutions, simultaneously expanding the applicable graph classes and enhancing approximation guarantees.
+
+\section*{Correctness Testing}
+
+\subsection*{Tournament Graphs}
+We implemented rigorous verification through structural validation and algorithmic testing. For tournament graphs, we validated to ensure exactly one directed edge between each vertex pair.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{image1.png}
+\caption{Verification of tournament graph property and the intersection of In-Out edges between the vertices to be potential trackers, further verified by finding "path through edge".}
+\label{fig:tournament-verification}
+\end{figure}
+
+The tracking logic was systematically verified by:
+\begin{itemize}
+\item Computing $\text{Out}(u) \cap \text{In}(v)$ intersections for tournament edges (Figure~\ref{fig:tracker-identification})
+\item Comparing results against manually constructed test cases
+\item Progressively scaling from small hand-verified instances to larger automated tests
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{image2.png}
+\caption{Total number of Trackers needed.}
+\label{fig:tracker-identification}
+\end{figure}
+
+\subsection*{Chordal Graphs}
+Verification methodology:
+\begin{itemize}
+    \item \textbf{Path Uniqueness}: For each tracker set candidate:
+    \begin{itemize}
+        \item Manually traced all $s$-$t$ paths in visualized graphs
+        \item Confirmed each path pair diverges at $\geq$1 tracker
+        \item Verified minimality by attempting tracker removal
+    \end{itemize}
+    
+    \item \textbf{Reduction Validation}: Compared pre/post-reduction:
+    \begin{itemize}
+        \item Ensured only non-path vertices were removed
+        \item Confirmed all $s$-$t$ paths preserved
+    \end{itemize}
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.35\textwidth}  % Reduced from 0.45
+    \includegraphics[width=\linewidth]{image3.png}
+    \caption{Original chordal graph}
+    \label{fig:chordal-orig}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.35\textwidth}  % Reduced from 0.45
+    \includegraphics[width=\linewidth]{image4.png}
+    \caption{Reduced Chordal}
+    \label{fig:chordal-reduced}
+\end{subfigure}
+
+\vspace{0.3cm}  % Reduced spacing
+
+\begin{subfigure}{0.35\textwidth}  % Reduced from 0.45
+    \includegraphics[width=\linewidth]{image.png}
+    \caption{Final Tracker}
+    \label{fig:chordal-implemented}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.35\textwidth}  % Reduced from 0.45
+    \includegraphics[width=\linewidth]{image5.png}
+    \caption{Post Tracker}
+    \label{fig:chordal-trackers}
+\end{subfigure}
+\caption{Chordal graph verification pipeline showing (a) initial structure, (b) reduced state, (c) final tracker implementation, and (d) Post graph (new)}
+\label{fig:chordal-process}
+\end{figure}
+
+\section*{Challenges \& Solutions}
+Key challenges included: (1) correctly implementing tracker node conditions for path distinguishability, and (2) generating valid test graphs due to a lack of specialised library support. Initial versions misidentified trackers, which we resolved through iterative testing on hand-constructed cases and custom graphs which followed the graph properties of Chordal or Tournament. This process revealed edge cases and refined our implementation logic. The current challenge is creating tournament graphs which can be reduced. Since tournament graphs are fully connected by definition, identifying and removing nodes or edges not involved in any s-t path is non-trivial.
+
+\section*{Enhancements}
+Our testing extended beyond the paper's examples by evaluating multiple variations of both chordal and tournament graphs. While we maintained the original optimised Algorithms 1 and 2 without modifications, we rigorously validated them on diverse graph structures. The implementation was limited to moderately complex graphs due to time constraints and the significant effort required to manually construct and verify more intricate cases before coding. 
+
+\end{document}
