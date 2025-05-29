@@ -4,9 +4,18 @@
 This project implements algorithms from the paper "Tracking Paths in Polynomial Time", which explores solutions to the Tracking Paths Problem—determining a minimal set of vertices (or edges) that uniquely track all s → t paths in a given graph. The problem is NP-hard in general, but the paper presents polynomial-time algorithms for chordal graphs, tournament graphs, and bounded-degree graphs.
 
 # Project Structure
-- tests - to verify cases
-- implementation - python file with code
-- project proposal
+In this repository, you will find CP01, CP02, CP03 which were checkpoint submissions required by the course instructors. 
+In the paper folder, you will find a short and a long version of the paper this project implements. 
+In the code folder, you will find
+- graph.py: parent class that contains basic add vertices, add edges, visualisation functions
+- chordal.py: child class with implementation for the algorithm for chordal graphs
+- tournament.py: child class with implementation for the algorithm for tournament graphs (although this doesnt fully inherit Graph)
+- tracking_set.py: more implementation for tournament graphs
+- test_reduction.py: tests reduction
+- test_chordal.py: tests chordal graphs
+- test_tournament.py and test_tracking_set.py: test tournament graphs
+there's a bit of overlap in code because one person worked on graph.py, chordal.py, test_reduction.py and test_chordal.py and the other worked on tournament.py, tracking_set.py, test_tournament.py and test_tracking_set.py
+
 
 # Setup & Requirements
 Dependencies:
