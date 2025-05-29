@@ -1,23 +1,21 @@
-# ADAproject
-Project Title:
-Tracking Paths in Polynomial Time – Implementation of Graph Algorithms
+# Tracking Paths in Polynomial Time – Implementation of Graph Algorithms
 
-Overview
+# Overview
 This project implements algorithms from the paper "Tracking Paths in Polynomial Time", which explores solutions to the Tracking Paths Problem—determining a minimal set of vertices (or edges) that uniquely track all s → t paths in a given graph. The problem is NP-hard in general, but the paper presents polynomial-time algorithms for chordal graphs, tournament graphs, and bounded-degree graphs.
 
 # Project Structure
-tests - to verify cases
-implementation - python file with code
-project proposal
+- tests - to verify cases
+- implementation - python file with code
+- project proposal
 
 # Setup & Requirements
 Dependencies:
 
-Python 3.x
+- Python 3.x
 
-NetworkX (for graph operations)
+- NetworkX (for graph operations)
 
-Matplotlib (for visualization)
+- Matplotlib (for visualization)
 
 # Tracking Paths in Polynomial Time - Project Documentation
 
@@ -33,7 +31,7 @@ The proposed algorithms are not only computationally efficient for these specifi
 - **Edge-Based Tracking**: Unlike earlier approaches that were vertex-based, this paper shifts to edge-based tracking, which proves to be more efficient and allows for broader applications.
 - **Approximation for Bounded-Degree Graphs**: The paper provides a 2(δ + 1)-approximation for graphs with degree δ ≥ 6, improving upon previous approximation results in the field.
 
-## Algorithm Overview
+## Algorithm and Paper Overview
 
 ### 1. **Chordal Graphs**
    - The algorithm leverages the chordal property (no induced cycles ≥ 4) by focusing on common neighbors in cycles. It identifies critical vertices that help distinguish all s-t paths.
@@ -57,13 +55,6 @@ Earlier work focused on planar graphs, with approximation algorithms for either 
 
 - **Vertex Cover Reduction**: The paper shows that the tracking problem is NP-hard by reducing it to the Vertex Cover problem, especially for graphs with degree δ ≥ 6.
 - **Degree Constraint Analysis**: It proves that tracking remains NP-hard even when the maximum degree δ ≤ 6, though simpler cases might be tractable for δ ≤ 5.
-
-## Implementation Challenges
-
-Implementing the proposed algorithms presents several challenges:
-- **Complex Graph Structures**: Managing large and complex chordal and tournament graphs can be computationally demanding.
-- **Edge-Based Tracking**: Efficient computation of the minimum feedback edge set in large graphs adds complexity.
-- **Handling Bounded-Degree Graphs**: For graphs with degree δ ≥ 6, the NP-hard nature of the problem requires approximation techniques to manage larger instances.
 
 ## References Further 
 
